@@ -9,16 +9,16 @@ plot1 <- function() {
     years <- names(NEI_by_year)
     
     # Prepare vector that will hold total emission for every year
-    t_emisiion = rep(0, length(years))
+    t_emission = rep(0, length(years))
     
     # Sum total emission for every year
     for (i in 1:length(years)) {
-        t_emisiion[i] <- sum(NEI_by_year[[i]]$Emissions, na.rm = T)
+        t_emission[i] <- sum(NEI_by_year[[i]]$Emissions, na.rm = T)
     }
     
     png(filename = "plot1.png")
     
-    plot(years, t_emisiion, col = "red", ylab = "Total Emission (tones)")
+    plot(years, t_emission, col = "red", ylab = "Total Emission (tones)")
     
     dev.off()
 
