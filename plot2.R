@@ -1,5 +1,5 @@
 plot2 <- function() {
-    # Read file Source_Classification_Code.rds
+    # Read file summarySCC_PM25.rds
     NEI <- readRDS('./data/summarySCC_PM25.rds')
     
     # Split data frame by year
