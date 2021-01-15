@@ -16,23 +16,12 @@ plot4 <- function() {
     # Subset summary set for SCC in SCC_Codes
     NEI_Coal <- NEI[NEI$SCC %in% SCC_Codes,]
     
-    # Split data frame by year
-    NEI_by_year <- split(NEI_Coal, NEI_Coal$year)
-    
-    # Get a vector of included years
-    years <- names(NEI_by_year)
-    
-    # Prepare vector that will hold total emission for every year
-    t_emission = rep(0, length(years))
-    
-    # Sum total emission for every year
-    for (i in 1:length(years)) {
-        t_emission[i] <- sum(NEI_by_year[[i]]$Emissions, na.rm = T)
-    }
+    emission <- tapply(NEI_Coal$Emissions, NEI_Coal$year, sum)
     
     png(filename = "plot4.png")
-    
-    plot(years, t_emission, col = "red", ylab = "Total Emission (tones)")
-    
+
+    plot(names(emission), emission, col = "red", ylab = "Total Emission from Coal combustion (tones)")
+    lines(names(emission), emission, col = 'red', type = 'l')
+
     dev.off()
 }
